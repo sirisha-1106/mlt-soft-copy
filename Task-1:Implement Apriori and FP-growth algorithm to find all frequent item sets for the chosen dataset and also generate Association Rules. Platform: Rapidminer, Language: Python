@@ -1,0 +1,53 @@
+# Install necessary libraries
+!pip install mlxtend import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Sample dataset (replace this with your actual dataset) buying_books_data = [
+['Book1', 'Book2', 'Book3'],
+['Book2', 'Book3', 'Book4'],
+['Book1', 'Book3', 'Book5'],
+['Book2', 'Book4', 'Book5'],
+]
+
+# Convert the dataset to a one-hot encoded format te = TransactionEncoder()
+te_ary = te.fit(buying_books_data).transform(buying_books_data) df_buying_books = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Apply the Apriori algorithm min_support = 0.2 # Adjust as needed
+frequent_itemsets = apriori(df_buying_books, min_support=min_support, use_colnames=True)
+
+# Generate association rules min_confidence = 0.5 # Adjust as needed
+rules = association_rules(frequent_itemsets, metric='confidence', min_threshold=min_confidence)
+
+# Display frequent itemsets
+ 
+print("Frequent Itemsets:") print(frequent_itemsets)
+
+# Display association rules print("\nAssociation Rules:") print(rules)
+Task 1b:FP-growth algorithm
+!pip install pyfpgrowth import pyfpgrowth
+# Sample dataset (replace this with your actual dataset) buying_books_data = [
+['Book1', 'Book2', 'Book3'],
+['Book2', 'Book3', 'Book4'],
+['Book1', 'Book3', 'Book5'],
+['Book2', 'Book4', 'Book5'],
+]
+
+# Convert the dataset to a list of transactions transactions = [tuple(transaction) for transaction in buying_books_data]
+
+# Apply the FP-growth algorithm min_support = 2 # Adjust as needed
+patterns = pyfpgrowth.find_frequent_patterns(transactions, min_support)
+
+# Generate association rules min_confidence = 0.5 # Adjust as needed
+rules = pyfpgrowth.generate_association_rules(patterns, min_confidence)
+
+# Display frequent itemsets print("Frequent Itemsets:") print(patterns)
+ 
+# Display association rules print("\nAssociation Rules:") print(rules)
+plt.figure(figsize=(36, 24))
+plt.subplot(2, 2, 1)
+plt.barh(itemset_labels, list(patterns.values())) plt.xlabel('Support')
+plt.ylabel('Itemsets') plt.title('Frequent Itemsets')
+import seaborn as sns plt.subplot(2, 2, 2)
+sns.histplot(list(patterns.values()), bins=10, kde=True) plt.xlabel('Support')
+plt.ylabel('Frequency') plt.title('Support Distribution')
