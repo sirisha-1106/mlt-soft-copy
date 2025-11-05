@@ -1,0 +1,18 @@
+Step 1: Load the Dataset -> Drag and drop the "File" widget onto the canvas
+Step 2: Connect the "File" widget to the "Data Table" widget.
+
+Step3: Load your customer dataset using the "Browse" button in the "File" widget. ( titanic dataset loaded here )
+
+Step 4: Data Pre-processing
+Drag and drop the "Data Table" widget onto the canvas. Connect the "Data Table" widget to the "File" widget.
+Use the "Data Table" widget to inspect your dataset. Address any missing values or outlier
+Step 5: Encode Categorical Variables
+Drag and drop the "Edit Domain" widget onto the canvas. Connect the "Edit Domain" widget to the "Data Table" widget.
+In the "Edit Domain" widget, select the categorical variables and choose the appropriate encoding method.
+Step 6: Data Analysis
+Drag and drop the "Data Table" widget onto the canvas. Connect the "Data Table" widget to the "Edit Domain" widget.
+Use the "Data Table" widget to explore basic statistics and demographics of your customers
+Step 7: Data Visualization
+Drag and drop the "Distributions" widget onto the canvas. Connect the "Distributions" widget to the "Edit Domain" widget.
+In the "Distributions" widget, select variables like age, income, and spending to plot histograms and visualize distributions.
+
