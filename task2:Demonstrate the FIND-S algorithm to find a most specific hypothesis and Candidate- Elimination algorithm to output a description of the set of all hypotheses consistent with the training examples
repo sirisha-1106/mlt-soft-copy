@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+def visualize_candidate_elimination_algorithm(positive_examples, negative_examples):
+specific_hypothesis = ['0'] * len(positive_examples[0]) general_hypothesis = ['?'] * len(positive_examples[0])
+visualization_specific = [] visualization_general = []
+for idx, example in enumerate(positive_examples, start=1): for i in range(len(example)):
+if specific_hypothesis[i] == '0': specific_hypothesis[i] = example[i]
+elif specific_hypothesis[i] != example[i]: specific_hypothesis[i] = '?'
+
+for i in range(len(example)):
+if example[i] != specific_hypothesis[i]: general_hypothesis[i] = specific_hypothesis[i]
+visualization_specific.append((idx, "
+".join(specific_hypothesis)))
+visualization_general.append((idx, " ".join(general_hypothesis)))
+for example in negative_examples: for i in range(len(example)):
+if example[i] != specific_hypothesis[i]: general_hypothesis[i] = '?'
+visualization_general.append((idx + 1, " ".join(general_hypothesis)))
+
+return visualization_specific, visualization_general positive_examples_candidate = [
+['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same'],
+['Sunny', 'Warm', 'High', 'Strong', 'Warm', 'Same'],
+['Rainy', 'Cold', 'Normal', 'Strong', 'Cool', 'Change'],
+['Sunny', 'Hot', 'High', 'Strong', 'Cool', 'Change']
+]
+negative_examples_candidate = [
+['Rainy', 'Cold', 'High'
