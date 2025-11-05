@@ -1,0 +1,23 @@
+!pip install -q pandas numpy matplotlib scikit-learn
+
+# Import libraries import pandas as pd import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans, AffinityPropagation, Birch from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+from sklearn.datasets import load_iris
+
+# Load Iris dataset iris = load_iris()
+data = pd.DataFrame(data= np.c_[iris['data'], iris['target']], columns= iris['feature_names'] + ['target'])
+
+# Select relevant features for clustering
+selected_features 
+print(f'Calinski-Harabasz Index: {ch_index}\n')
+
+# Function to plot clusters
+def plot_clusters(X, labels, algorithm):
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=labels, cmap='viridis', marker='o', edgecolors='k')
+plt.title(f'{algorithm} Clustering') plt.xlabel('Feature 1')
+plt.ylabel('Feature 2') plt.show()
+
+# Apply K-means clustering kmeans_labels = kmeans_clustering(X)
+evaluate_clustering(X, kmeans_labels, 'K-Means Clustering') plot_clusters(X, kmeans_labels, 'K-Means')
+
