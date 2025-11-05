@@ -1,0 +1,37 @@
+Install required libraries
+!pip install -q pandas numpy matplotlib scikit-learn
+
+# Import libraries import pandas as pd import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+# Load CC General dataset
+# Replace 'CC_general.csv' with the actual file path of the CC General dataset
+cc_data = pd.read_csv('/content/CC GENERAL.csv')
+
+# Drop non-numeric columns and handle missing values (customize based on your dataset)
+X = cc_data.drop(['CUST_ID', 'TENURE'], axis=1).fillna(0)
+
+# Agglomerative Hierarchical Clustering function
+def hierarchical_clustering(X, n_clusters=4, method='ward', metric='euclidean'):
+model = AgglomerativeClustering(n_clusters=n_clusters, linkage=method, affinity=metric)
+labels = model.fit_predict(X) return labels
+
+# K-means clustering function
+def kmeans_clustering(X, n_clusters=4):
+model = KMeans(n_clusters=n_clusters, random_state=42) labels = model.fit_predict(X)
+return labels
+
+# Function to evaluate clustering metrics
+def evaluate_clustering(X, labels, algorithm): silhouette = silhouette_score(X, labels) db_index = davies_bouldin_score(X, labels) ch_index = calinski_harabasz_score(X, labels)
+
+print(f'Evaluation plt.show()
+
+# Apply Agglomerative Hierarchical Clustering hierarchical_labels = hierarchical_clustering(X)
+evaluate_clustering(X, hierarchical_labels, 'Agglomerative Hierarchical Clustering')
+hierarchical_dendrogram(X)
+
+# Apply K-means clustering kmeans_labels = kmeans_clustering(X)
+evaluate_clustering(X, kmeans_labels, 'K-Means Clustering') plot_kmeans_clusters(X, kmeans_labels)
